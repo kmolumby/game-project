@@ -13,8 +13,8 @@ body{
 
 
 .square {
-    height: 50px;
-    width: 50px;
+    height: 130px;
+    width: 100px;
     border: 1px solid black;
     margin: 1px;
 }
@@ -27,5 +27,16 @@ body{
 }
 
 .burgers {
-    background-color: black;
+    background-image: url(../images/burger.png);
+    background-position: center; 	
+    background-size: contain;
+    background-repeat: no-repeat;
+ 
+}
+
+.character {
+    background-image: url(../images/gene-dancing.gif);
+    background-position: center; 	
+    background-size: contain;
+    background-repeat: no-repeat;
 }
