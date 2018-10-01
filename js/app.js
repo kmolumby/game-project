@@ -99,5 +99,4 @@ var passTime = setInterval(timePassing, 1500);
 
 // function to make burgers fall
 
-// function to add points to scoreboard
 
