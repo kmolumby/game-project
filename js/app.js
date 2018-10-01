@@ -1,23 +1,3 @@
-// Make a class for the burgers
-
-// class Burgers {
-// 	constructor(x,y) {
-// 		this.x = 9;
-// 		this.y = 13;
-// 	}
-
-// 	fall () {
-// 		if(this.y > 0) {
-// 			$(`.square-${this.x}-${this.y}`).removeClass('burgers');
-// 			this.y++;
-// 			$(`.square-${this.x}-${this.y}`).addClass('burgers');
-// 			setTimeout(()=>{
-//                 this.fall();
-//             }, 100)
-// 		}
-// 	}
-
-// }
 
 
 // Make an object for the character  
@@ -27,9 +7,6 @@ const tina = {
 	y: 1,
 }
 
-// class Character {
-    
-// }
 
 // Make a function that creates the game board
 
@@ -71,6 +48,31 @@ const moveRight = () => {
 	}
 }
 
+// Make a class for the burgers
+
+class Burgers {
+	constructor(x,y) {
+		this.x = x;
+		this.y = 13;
+		$(`.square-${this.x}-13`).addClass('burgers');
+		this.fall();
+
+	}
+
+	fall () {
+		if(this.y > 0) {
+			$(`.square-${this.x}-${this.y}`).removeClass('burgers');
+			this.y--;
+			$(`.square-${this.x}-${this.y}`).addClass('burgers');
+			setTimeout(()=>{
+                this.fall();
+            }, 500)
+		}
+	}
+
+}
+
+
 // make a timer
 
 let seconds = 0;
@@ -79,7 +81,18 @@ const timePassing = () => {
    if (seconds< 30) {
 	seconds++;
 	$('#time').text(seconds)
+	if(seconds % 3 === 0 && seconds < 30 ) {
+		createRandomBurger();
+	}
+
  }
+ 
+}
+
+const createRandomBurger =() => {
+	let x = Math.floor(Math.random() * (18 - 0)) + 0;
+	const burger = new Burgers(x,13);
+
 }
 var passTime = setInterval(timePassing, 1500);
 // random burger spawn
