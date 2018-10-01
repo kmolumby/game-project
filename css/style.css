@@ -1,0 +1,23 @@
+
+/* body{
+    background-image: url(../images/large.gif);
+    max-width: 100%;
+    background: url(../images/store-front.jpg);
+    background-position: center; 	
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 33em;
+    margin-top: 5em;
+    
+   
+    border: 2px solid black;
+ }  */
+
+
+.square {
+    height: 50px;
+    width: 50px;
+    background-color: black;
+    margin: 1px;
+}
+
