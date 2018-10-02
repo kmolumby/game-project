@@ -17,15 +17,81 @@ $( document ).ready(function() {
 $('.start-game').on('click', () => {
 
 	$('#modal-start').modal('hide');
-// Make an object for the character  
 const game = {
 	running: true,
 	level: 1,
 }
+
+// Make an object for the character  
+
+
+let burgerCollision = false;
 const tina = {
 	x: 8,
 	y: 1,
 	points: 0,
+
+
+
+ moveLeft () {
+		if (this.x > 0) {
+			const currentSquare = $('#tina');
+			$('#tina').removeAttr('id');
+			this.x--;
+			$(`.square-${this.x}-1`).attr('id','tina')
+			tina.checkCollision();
+			// burgers.checkCollision();
+		}
+	},
+
+	moveRight () {
+		if (this.x < 19) {
+			const currentSquare = $('#tina');
+			$('#tina').removeAttr('id');
+			this.x++;
+			$(`.square-${this.x}-1`).attr('id','tina')
+			tina.checkCollision();
+			// burgers.checkCollision();
+
+		}
+	},
+
+
+
+	checkCollision() {
+		const collisionSquare = $(`.square-${this.y}-${this.x}`)
+		if($('#tina').hasClass('burgers')) {
+				this.points = this.points + 1;
+				burgerCollision = true;
+				collisionSquare.removeClass('burgers')
+				$('#points-scored').text(this.points);
+		} else if ($('#tina').hasClass('jimmy') && jimmyCollision===false) {
+			console.log('collision')
+			this.points = this.point +3;
+			jimmyCollision = true;
+			collisionSquare.removeClass('jimmy')
+
+
+		}
+	}, 
+
+
+	levelUp() {
+
+		if(this.points === 10 && game.level === 1) {
+			game.level++
+			$('#level').text(game.level);
+			burgerRate = 300;
+		} else if ( this.points === 20 && game.level === 2) {
+			game.level++
+			$('#level').text(game.level);
+			burgerRate = 100;
+		} else if (this.points === 30 && game.level === 3) {
+			game.level++
+			$('#level').text(game.level);
+			burgerRate = 50;
+	   }
+	}
 }
 
 
@@ -36,29 +102,14 @@ const tina = {
 $('.square-8-1').attr('id', 'tina')
 $('body').keydown((event)=>{
     if(event.which == 37){
-        moveLeft();
+       tina.moveLeft();
     }else if(event.which == 39){
-		moveRight();
+		tina.moveRight();
 		}
 	})
 
-const moveLeft = () => {
-	if (tina.x > 0) {
-		const currentSquare = $('#tina');
-		$('#tina').removeAttr('id');
-		tina.x--;
-		$(`.square-${tina.x}-1`).attr('id','tina')
-	}
-}
 
-const moveRight = () => {
-	if (tina.x < 19) {
-		const currentSquare = $('#tina');
-		$('#tina').removeAttr('id');
-		tina.x++;
-		$(`.square-${tina.x}-1`).attr('id','tina')
-	}
-}
+
 
 // Make a class for the burgers
 
@@ -78,16 +129,26 @@ class Burgers {
 			$(`.square-${this.x}-${this.y}`).removeClass('burgers');
 			this.y--;
 			$(`.square-${this.x}-${this.y}`).addClass('burgers');
+			tina.checkCollision();
+			// this.checkCollision();
 			setTimeout(()=>{
                 this.fall();
-			}, 500)
-			checkCollision();
-
+			}, burgerRate)
 		}
 	}
 
-}
+	// checkCollision() {
+	// 	const collisionSquare = $(`.square-${this.y}-${this.x}`)
+	// 	if($('.burgers').is('tina')) {
+	// 		console.log('collision')
+	// 			tina.points = tina.points + 1;
+	// 			collision = true;
+	// 			$('#points-scored').text(tina.points);
+	// 	}
+	// }
 
+}
+let burgerRate = 500;
 // 
 
 // random burger spawn
@@ -100,38 +161,61 @@ const createRandomBurger =() => {
 	randomBurgers.push(burger);
 
 }
+
+
+	// create random characters 
+
+	// const randomCharacters = [];
+
+class Character {
+	constructor(x,y,type) {
+		this.x = x;
+		this.y = 1;
+		this.type = type;
+		$(`.square-${this.x}-1`).addClass(this.type);
+		this.remove = false;
+	}
+
+	
+}
+const randomCharacter =[];
+const createRandomJimmy = () => {
+	 let x = Math.floor(Math.random() * (18 - 0)) + 0;
+	 const jimmy = new Character (x,1,'jimmy');
+	 console.log('generating jimmy')
+	 
+	 randomCharacter.push(jimmy);
+}
+
 // make a timer
 
 let seconds = 0;
-let points = 0;
 const timePassing = () => {
-   if (seconds< 30) {
+   if (seconds< 60) {
 		seconds++;
 		$('#time').text(seconds);
-		if(seconds % 3 === 0 && seconds < 30 ) {
+		if(seconds % 3 === 0 && seconds < 60 ) {
 			createRandomBurger();
 		}
 
+		if(seconds % 8 ===0) {
+			createRandomJimmy();
+		}
 
+
+		tina.levelUp();
 		}
  
 	}
 
+ 
 
 var passTime = setInterval(timePassing, 1500);
 
 
 // detect collision and add points
 
-const checkCollision = () => {
-	for (let i = 0; i < randomBurgers.length; i ++) {
-		if (randomBurgers[i].x === tina.x && randomBurgers[i].y === tina.y) {
-			console.log('collision')
-			tina.points++;
-			$('#points-scored').text(tina.points);
-		}
-	}
-}
+
 
 
 

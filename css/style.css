@@ -33,11 +33,13 @@
  
 }
 
-.character {
-    background-image: url(../images/gene-dancing.gif);
+.jimmy {
+    background-image: url(../images/Jimmy_Pesto_Jr.png);
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
+    height: 3em;
+    width: 3em;
 }
 
 .stats {
