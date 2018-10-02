@@ -2,9 +2,9 @@ $( document ).ready(function() {
 	$('#modal-start').modal('show');
 
 // Make a function that creates the game board
-	for(let y = 0; y < 22; y++){
+	for(let y = 0; y < 16; y++){
 		$('.game-board').append(`<div class='game-column game-column-${y}'></div>`)
-		for(let x =13 ; x > 0; x--){
+		for(let x = 8 ; x > 0; x--){
 			const gameSquare = $('<div/>')
 			gameSquare.addClass('square')
 			gameSquare.addClass(`square-${y}-${x}`)
@@ -45,7 +45,7 @@ const tina = {
 	},
 
 	moveRight () {
-		if (this.x < 19) {
+		if (this.x < 15) {
 			const currentSquare = $('#tina');
 			$('#tina').removeAttr('id');
 			this.x++;

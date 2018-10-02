@@ -1,5 +1,4 @@
-
-.game-board {
+body {
     max-width: 100%;
     background: url(../images/store-front.jpg);
     background-position: center; 	
@@ -7,11 +6,19 @@
     background-repeat: no-repeat;
   margin-bottom: 5em;
 }
+.game-board {
+    /* max-width: 100%;
+    background: url(../images/store-front.jpg);
+    background-position: center; 	
+    background-size: cover;
+    background-repeat: no-repeat;
+  margin-bottom: 5em; */
+}
 
 .square {
     
-    height: 3em;
-    width: 3em;
+    height: 6em;
+    width: 6em;
     border: 1px solid black;
     margin: 1px;
 }
@@ -21,8 +28,8 @@
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
-    width: 3em;
-    height: 3em;
+    width: 6em;
+    height: 6em;
 }
 
 .burgers {
@@ -38,8 +45,8 @@
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
-    height: 3em;
-    width: 3em;
+    height: 6em;
+    width: 6em;
 }
 
 .stats {
