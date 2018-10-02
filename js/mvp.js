@@ -65,11 +65,9 @@ const tina = {
 				burgerCollision = true;
 				collisionSquare.removeClass('burgers')
 				$('#points-scored').text(this.points);
-		} else if ($('#tina').hasClass('jimmy') && jimmyCollision===false) {
+		} else if ($('#tina').hasClass('jimmy')) {
 			console.log('collision')
-			this.points = this.point +3;
-			jimmyCollision = true;
-			collisionSquare.removeClass('jimmy')
+			// $(randomCharacter[i]).remove();
 
 
 		}
@@ -119,6 +117,7 @@ class Burgers {
 		this.y = 13;
 		$(`.square-${this.x}-13`).addClass('burgers');
 		this.fall();
+		this.remove = false;
 
 	}
 
@@ -187,6 +186,12 @@ const createRandomJimmy = () => {
 	 randomCharacter.push(jimmy);
 }
 
+const createRadomTammy = () => {
+	let x = Math.floor(Math.random()*(18-0)) + 0;
+	const tammy = new Character (x,1,'tammy');
+	randomCharacter.push(tammy);
+}
+console.log(randomCharacter)
 // make a timer
 
 let seconds = 0;
