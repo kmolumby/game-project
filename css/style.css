@@ -1,20 +1,17 @@
 
-body{
+.game-board {
     max-width: 100%;
     background: url(../images/store-front.jpg);
     background-position: center; 	
     background-size: cover;
     background-repeat: no-repeat;
-    margin-top: 5em;
-    
-   
-    
- }  
-
+  margin-bottom: 5em;
+}
 
 .square {
-    height: 130px;
-    width: 100px;
+    
+    height: 3em;
+    width: 3em;
     border: 1px solid black;
     margin: 1px;
 }
@@ -24,6 +21,8 @@ body{
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
+    width: 3em;
+    height: 3em;
 }
 
 .burgers {
@@ -39,4 +38,10 @@ body{
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.stats {
+    margin-top: 15em;
+    margin-right: 5em;
+    background-color: white;
 }

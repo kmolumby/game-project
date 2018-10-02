@@ -1,4 +1,22 @@
+$( document ).ready(function() {
+	$('#modal-start').modal('show');
 
+// Make a function that creates the game board
+	for(let y = 0; y < 22; y++){
+		$('.game-board').append(`<div class='game-column game-column-${y}'></div>`)
+		for(let x =13 ; x > 0; x--){
+			const gameSquare = $('<div/>')
+			gameSquare.addClass('square')
+			gameSquare.addClass(`square-${y}-${x}`)
+			$(`.game-column-${y}`).append(gameSquare)
+		}
+	}
+});
+
+
+$('.start-game').on('click', () => {
+
+	$('#modal-start').modal('hide');
 // Make an object for the character  
 const game = {
 	running: true,
@@ -7,20 +25,12 @@ const game = {
 const tina = {
 	x: 8,
 	y: 1,
+	points: 0,
 }
 
 
-// Make a function that creates the game board
 
-for(let y = 0; y < 20; y++){
-    $('.game-board').append(`<div class='game-column game-column-${y}'></div>`)
-    for(let x = 13; x > 0; x--){
-        const gameSquare = $('<div/>')
-        gameSquare.addClass('square')
-        gameSquare.addClass(`square-${y}-${x}`)
-        $(`.game-column-${y}`).append(gameSquare)
-    }
-}
+
 
 //make a key event 
 $('.square-8-1').attr('id', 'tina')
@@ -70,7 +80,9 @@ class Burgers {
 			$(`.square-${this.x}-${this.y}`).addClass('burgers');
 			setTimeout(()=>{
                 this.fall();
-            }, 500)
+			}, 500)
+			checkCollision();
+
 		}
 	}
 
@@ -100,22 +112,27 @@ const timePassing = () => {
 			createRandomBurger();
 		}
 
-		// detect collision and add points
 
-		for (let i = 0; i<randomBurgers.length; i ++) {
-			if (randomBurgers[i].x === tina.x && randomBurgers[i].y === tina.y) {
-				console.log('collision')
-				points++;
-				$('#points-scored').text(points);
-			}
 		}
-
-  }
  
-}
+	}
 
 
 var passTime = setInterval(timePassing, 1500);
 
 
+// detect collision and add points
 
+const checkCollision = () => {
+	for (let i = 0; i < randomBurgers.length; i ++) {
+		if (randomBurgers[i].x === tina.x && randomBurgers[i].y === tina.y) {
+			console.log('collision')
+			tina.points++;
+			$('#points-scored').text(tina.points);
+		}
+	}
+}
+
+
+
+})

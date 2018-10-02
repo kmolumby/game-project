@@ -52,7 +52,7 @@ $('.start-game').on('click', () => {
 			$('#tina').removeAttr('id');
 			tina.x--;
 			$(`.square-${tina.x}-1`).attr('id','tina')
-			checkCollision();
+			// checkCollision();
 		}
 	}
 
@@ -62,7 +62,7 @@ $('.start-game').on('click', () => {
 			$('#tina').removeAttr('id');
 			tina.x++;
 			$(`.square-${tina.x}-1`).attr('id','tina')
-			checkCollision();
+			// checkCollision();
 		}
 	}
 
@@ -97,22 +97,22 @@ $('.start-game').on('click', () => {
 
 	// const randomCharacters = [];
 
-	// class Character {
-	// 		constructor(x,y) {
-	// 			this.x = x;
-	// 			this.y = 1;
-	// 			$(`.square-${this.x}-1`).addClass('character');
+	class Character {
+			constructor(x,y) {
+				this.x = x;
+				this.y = 1;
+				$(`.square-${this.x}-1`).addClass('character');
 
-	// 		}
+			}
 
 			
-	// }
+	}
 
-	// const createRandomCharacter = () => {
-	//      let x = Math.floor(Math.random() * (18 - 0)) + 0;
-	//      const character = new Character (x,1);
-	// 	 randomCharacters.push(character);
-	// }
+	const createRandomCharacter = () => {
+	     let x = Math.floor(Math.random() * (18 - 0)) + 0;
+	     const character = new Character (x,1);
+		 randomCharacters.push(character);
+	}
 
 	// random burger spawn
 
@@ -120,7 +120,7 @@ $('.start-game').on('click', () => {
 
 	const createRandomBurger =() => {
 		let x = Math.floor(Math.random() * (9 - 0)) + 0;
-		const burger = new Burgers (x,6);
+		const burger = new Burgers (x,7);
 		console.log(burger);
 		randomBurgers.push(burger);
 	
