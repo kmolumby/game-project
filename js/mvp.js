@@ -21,11 +21,11 @@ $('.start-game').on('click', () => {
 
 	$('#modal-start').modal('hide');
 
-	// const playTheme = () => {
-	// 	$('#theme')[0].play();
-	// 	}
+	const playTheme = () => {
+		$('#theme')[0].play();
+		}
 	
-	// 	playTheme();
+		playTheme();
 	
 
 const game = {
@@ -46,7 +46,7 @@ const tina = {
 
  moveLeft () {
 		if (this.x > 0) {
-			const currentSquare = $('#tina');
+			// const currentSquare = $('#tina');
 			$('#tina').removeAttr('id');
 			this.x--;
 			$(`.square-${this.x}-1`).attr('id','tina')
@@ -57,13 +57,36 @@ const tina = {
 
 	moveRight () {
 		if (this.x < 15) {
-			const currentSquare = $('#tina');
+			// const currentSquare = $('#tina');
 			$('#tina').removeAttr('id');
 			this.x++;
 			$(`.square-${this.x}-1`).attr('id','tina')
-			tina.checkCollision();
+			// tina.checkCollision();
 			// burgers.checkCollision();
 
+		}
+	},
+
+	jumpUp () {
+		if (this.y == 1) {
+			// const currentSquare = $('#tina');
+			$('#tina').removeAttr('id');
+			this.y++;
+			$(`.square-${this.x}-${this.y}`).attr('id','tina')
+			// tina.checkCollision();
+			setTimeout(()=>{
+                this.jumpDown();
+			}, 600)
+		}
+	},
+    jumpDown() {
+		if (this.y == 2) {
+			// const currentSquare = $('#tina');
+			$('#tina').removeAttr('id');
+			this.y--;
+			$(`.square-${this.x}-${this.y}`).attr('id','tina')
+			tina.checkCollision();
+			
 		}
 	},
 
@@ -72,7 +95,7 @@ const tina = {
 	checkCollision() {
 		const collisionSquare = $(`.square-${this.y}-${this.x}`)
 		if($('#tina').hasClass('burgers')) {
-				collisionSquare.removeClass('burgers');
+				$('#tina').removeClass('burgers');
 				this.points = this.points + 1;
 				$('#points-scored').text(this.points);
 		} else if ($('#tina').hasClass('jimmy')) {
@@ -85,6 +108,7 @@ const tina = {
 			thereIsNoJimmy = true
 		} else if ($('#tina').hasClass('frond')) {
 			$('#tina').removeClass('frond');
+			$("#panic")[0].play();
 			this.points = this.points - 2;
 			thereIsNoFrond = true;
 			$('#points-scored').text(this.points);
@@ -122,7 +146,9 @@ $('body').keydown((event)=>{
        tina.moveLeft();
     }else if(event.which == 39){
 		tina.moveRight();
-		}
+	} else if (event.which == 38) {
+		tina.jumpUp();
+	}
 	})
 
 
@@ -183,7 +209,6 @@ const createRandomBurger =() => {
 
 	// create random characters 
 
-	// const randomCharacters = [];
 class Character {
 	constructor(x,y,type) {
 		this.x = x;
@@ -193,37 +218,37 @@ class Character {
 		this.remove = false;
 	}
 
-	moveLeft() {
+	// moveLeft() {
 		
-			$(`.square-${this.x}-${this.y}`).removeClass(this.type);
-			this.x--;
-			$(`.square-${this.x}-${this.y}`).addClass(this.type);
-			tina.checkCollision();
-			// this.checkCollision();
-			setTimeout(()=>{
-                this.moveLeft();
-			}, 100)
-		}
+	// 		$(`.square-${this.x}-${this.y}`).removeClass(this.type);
+	// 		this.x--;
+	// 		$(`.square-${this.x}-${this.y}`).addClass(this.type);
+	// 		tina.checkCollision();
+	// 		// this.checkCollision();
+	// 		setTimeout(()=>{
+    //             this.moveLeft();
+	// 		}, 100)
+	// 	}
 
-		moveRight() {
-			$(`.square-${this.x}-${this.y}`).removeClass(this.type);
-			this.x++;
-			$(`.square-${this.x}-${this.y}`).addClass(this.type);
-			tina.checkCollision();
-			// this.checkCollision();
-			setTimeout(()=>{
-                this.moveRight();
-			}, 100)
-		}
-	characterMove () {
-		if (this.x >= 0) {
-			this.moveLeft();
-		}
+	// 	moveRight() {
+	// 		$(`.square-${this.x}-${this.y}`).removeClass(this.type);
+	// 		this.x++;
+	// 		$(`.square-${this.x}-${this.y}`).addClass(this.type);
+	// 		tina.checkCollision();
+	// 		// this.checkCollision();
+	// 		setTimeout(()=>{
+    //             this.moveRight();
+	// 		}, 100)
+	// 	}
+	// characterMove () {
+	// 	if (this.x >= 0) {
+	// 		this.moveLeft();
+	// 	}
 
-		if(this.x <= 8) {
-			this.moveRight();
-		}
-	}
+	// 	if(this.x <= 8) {
+	// 		this.moveRight();
+	// 	}
+	// }
 
 }
 const randomCharacter =[];
@@ -242,7 +267,7 @@ const createRandomFrond = () => {
 	const frond = new Character (x,1,'frond');
 	console.log('generating a frond')
 	randomCharacter.push(frond);
-	frond.characterMove();
+	// frond.characterMove();
 
 	console.log('frond moving')
 
