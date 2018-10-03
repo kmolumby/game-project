@@ -10,21 +10,34 @@
     <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="css/normalize.css" media="screen" title="no title" charset="utf-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-
+    <link rel="icon" href="http://yourwebsite/images/favicon.png" type="images/burger.png" />
     <title>Burgers and Butts</title>
   </head>
   <body>
+
+    <audio class="sounds" autoplay>
+        <source src="sounds/tina-groan.mp3">
+
+    </audio>
+    <audio id ='theme' autoplay>
+      <source src="sounds/theme-song.mp3">
+
+  </audio>
+
       <div class="modal" tabindex="-1" role="dialog" id="modal-start">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title">Burgers and Butts</h5>
+                  <h1 class="modal-title">Burgers and Butts</h1>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                <p>Instructions</p>   
+                <h2>Instructions</h2>
+                <p>Tina is on a mission to collect all the burgers and touch Jimmy Pesto Jr.'s butts as much as she can. Use the left and right buttons to move. Watch out for stupid Tammy Larsen. Use up arrow to avoid running into her. 
+                </p>  
+                <img src = "images/family.gif" >
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary start-game">Let's Play</button>
@@ -32,12 +45,27 @@
             </div>
           </div>
         </div>
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light content-justify-center">
+          <div class ='col-2'>
+            </div>
+          <div class ='col-8'>
+            
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <img class = "family" src = "images/Gene_Belcher.png ">
 
-        <div class="container-fluid">
-                  <div><h1>Time <span id='time'></span></h1></div>
-                  <div><h1>Points <span id='points-scored'></span></h1></div>
-                  <div><h1>Level <span id='level'>1</span></h1></div>
+                  <div><h1>Time:<span class ="counter" id='time'></span></h1></div>
+                  <div><h1>Points:<span class ="counter" id='points-scored'></span></h1></div>
+                  <div><h1>Level:<span class ="counter" id='level'> 1</span></h1></div>
               
+              </div>
+          </div>
+          <div class ='col-2'>
+            </div>
+    </nav>
+        <div class="container-fluid">
+                  
             
               <div class="row game-board">
                 

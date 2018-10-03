@@ -1,6 +1,6 @@
 body {
-    max-width: 100%;
-    background: url(../images/store-front.jpg);
+    /* max-width: 100%; */
+    background: url(../images/store-front-larger.jpg);
     background-position: center; 	
     background-size: cover;
     background-repeat: no-repeat;
@@ -37,6 +37,8 @@ body {
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
+    height:6em;
+    width: 6em;
  
 }
 
@@ -49,8 +51,52 @@ body {
     width: 6em;
 }
 
+.frond {
+    background-image: url(../images/mr-frond.png);
+    background-position: center; 	
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 6em;
+    width: 6em;
+}
+
 .stats {
+    z-index: 300 !important;
     margin-top: 15em;
     margin-right: 5em;
     background-color: white;
+}
+
+.family {
+    padding-top: 5px;
+   width: 50px;
+   height: 75px;
+}
+
+.navbar {
+    background-color: white;
+    
+}
+
+.navbar-nav{
+    /* padding: 0 2em; */
+    margin: auto;
+}
+
+.navbar-nav h1 {
+    padding: 0 .75em;
+}
+
+.navbar-collapse {
+    text-align: center;
+
+ 
+}
+
+.counter {
+    padding: 0 .5em;
+}
+
+.frond {
+
 }

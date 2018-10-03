@@ -1,5 +1,9 @@
+
+
+
 $( document ).ready(function() {
 	$('#modal-start').modal('show');
+	
 
 // Make a function that creates the game board
 	for(let y = 0; y < 16; y++){
@@ -13,10 +17,17 @@ $( document ).ready(function() {
 	}
 });
 
-
 $('.start-game').on('click', () => {
 
 	$('#modal-start').modal('hide');
+
+	// const playTheme = () => {
+	// 	$('#theme')[0].play();
+	// 	}
+	
+	// 	playTheme();
+	
+
 const game = {
 	running: true,
 	level: 1,
@@ -61,14 +72,22 @@ const tina = {
 	checkCollision() {
 		const collisionSquare = $(`.square-${this.y}-${this.x}`)
 		if($('#tina').hasClass('burgers')) {
+				collisionSquare.removeClass('burgers');
 				this.points = this.points + 1;
-				burgerCollision = true;
-				collisionSquare.removeClass('burgers')
 				$('#points-scored').text(this.points);
 		} else if ($('#tina').hasClass('jimmy')) {
 			console.log('collision')
-			// $(randomCharacter[i]).remove();
+			$('#tina').removeClass('jimmy');
+			$(".sounds")[0].play();
+			this.points = this.points + 2;
+			$('#points-scored').text(this.points);
 
+			thereIsNoJimmy = true
+		} else if ($('#tina').hasClass('frond')) {
+			$('#tina').removeClass('frond');
+			this.points = this.points - 2;
+			thereIsNoFrond = true;
+			$('#points-scored').text(this.points);
 
 		}
 	}, 
@@ -83,11 +102,11 @@ const tina = {
 		} else if ( this.points === 20 && game.level === 2) {
 			game.level++
 			$('#level').text(game.level);
-			burgerRate = 100;
+			burgerRate = 150;
 		} else if (this.points === 30 && game.level === 3) {
 			game.level++
 			$('#level').text(game.level);
-			burgerRate = 50;
+			burgerRate = 120;
 	   }
 	}
 }
@@ -165,7 +184,6 @@ const createRandomBurger =() => {
 	// create random characters 
 
 	// const randomCharacters = [];
-
 class Character {
 	constructor(x,y,type) {
 		this.x = x;
@@ -175,23 +193,61 @@ class Character {
 		this.remove = false;
 	}
 
-	
+	moveLeft() {
+		
+			$(`.square-${this.x}-${this.y}`).removeClass(this.type);
+			this.x--;
+			$(`.square-${this.x}-${this.y}`).addClass(this.type);
+			tina.checkCollision();
+			// this.checkCollision();
+			setTimeout(()=>{
+                this.moveLeft();
+			}, 100)
+		}
+
+		moveRight() {
+			$(`.square-${this.x}-${this.y}`).removeClass(this.type);
+			this.x++;
+			$(`.square-${this.x}-${this.y}`).addClass(this.type);
+			tina.checkCollision();
+			// this.checkCollision();
+			setTimeout(()=>{
+                this.moveRight();
+			}, 100)
+		}
+	characterMove () {
+		if (this.x >= 0) {
+			this.moveLeft();
+		}
+
+		if(this.x <= 8) {
+			this.moveRight();
+		}
+	}
+
 }
 const randomCharacter =[];
+let thereIsNoJimmy = true;
+let thereIsNoFrond = true;
 const createRandomJimmy = () => {
+	thereIsNoJimmy = false
 	 let x = Math.floor(Math.random() * (18 - 0)) + 0;
-	 const jimmy = new Character (x,1,'jimmy');
-	 console.log('generating jimmy')
-	 
+	 const jimmy = new Character(x,1,'jimmy');
 	 randomCharacter.push(jimmy);
 }
 
-const createRadomTammy = () => {
+const createRandomFrond = () => {
+	thereIsNoFrond = false;
 	let x = Math.floor(Math.random()*(18-0)) + 0;
-	const tammy = new Character (x,1,'tammy');
-	randomCharacter.push(tammy);
+	const frond = new Character (x,1,'frond');
+	console.log('generating a frond')
+	randomCharacter.push(frond);
+	frond.characterMove();
+
+	console.log('frond moving')
+
 }
-console.log(randomCharacter)
+// console.log()
 // make a timer
 
 let seconds = 0;
@@ -199,13 +255,21 @@ const timePassing = () => {
    if (seconds< 60) {
 		seconds++;
 		$('#time').text(seconds);
-		if(seconds % 3 === 0 && seconds < 60 ) {
+		if(seconds % 2 === 0 && seconds < 60 ) {
 			createRandomBurger();
 		}
 
-		if(seconds % 8 ===0) {
+		if(seconds % 11 === 0 && thereIsNoJimmy) {
 			createRandomJimmy();
 		}
+
+		if(seconds % 8 === 0 && thereIsNoFrond) {
+			createRandomFrond();
+			
+
+		}
+
+		
 
 
 		tina.levelUp();
