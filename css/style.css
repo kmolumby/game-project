@@ -1,24 +1,24 @@
 body {
-    /* max-width: 100%; */
+    max-width: 100%;
     background: url(../images/store-front-larger.jpg);
     background-position: center; 	
     background-size: cover;
     background-repeat: no-repeat;
   margin-bottom: 5em;
 }
-.game-board {
-    /* max-width: 100%;
+/* .game-board {
+    max-width: 100%;
     background: url(../images/store-front.jpg);
     background-position: center; 	
     background-size: cover;
     background-repeat: no-repeat;
-  margin-bottom: 5em; */
-}
+  margin-bottom: 5em;
+} */
 
 .square {
     
-    height: 6em;
-    width: 6em;
+    height: 4.5em;
+    width: 4.5em;
     /* border: 1px solid black; */
     /* margin: 1px; */
 }
@@ -28,8 +28,8 @@ body {
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
-    width: 6em;
-    height: 6em;
+    width: 4.5em;
+    height: 4.5em;
 }
 
 .burgers {
@@ -37,8 +37,8 @@ body {
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
-    height:6em;
-    width: 6em;
+    height:4.5em;
+    width: 4.5em;
  
 }
 
@@ -47,8 +47,8 @@ body {
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
-    height: 6em;
-    width: 6em;
+    height: 4.5em;
+    width: 4.5em;
 }
 
 .frond {
@@ -56,8 +56,8 @@ body {
     background-position: center; 	
     background-size: contain;
     background-repeat: no-repeat;
-    height: 6em;
-    width: 6em;
+    height: 4.5em;
+    width: 4.5em;
 }
 
 .stats {
